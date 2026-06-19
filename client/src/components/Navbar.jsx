@@ -7,7 +7,7 @@ export default function Navbar() {
           FlashAI
         </a>
         <a
-          href="https://github.com"
+          href="https://github.com/shreyaskaraiya321"
           target="_blank"
           rel="noopener noreferrer"
           className="text-text-muted hover:text-text-primary transition-colors"
