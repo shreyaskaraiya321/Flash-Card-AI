@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Reset & base ────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  background: #0E0E10;
+  color: #F0EFF5;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── 3D flip card ────────────────────────────────────────────── */
+.flip-card {
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.flip-card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #18181C;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* ── Drag-and-drop zone ──────────────────────────────────────── */
+.drop-zone {
+  border: 2px dashed rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.drop-zone:hover,
+.drop-zone.drag-over {
+  border-color: #7C6CF8;
+  background-color: rgba(124, 108, 248, 0.06);
+}
+
+/* ── Spinner ─────────────────────────────────────────────────── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(255, 255, 255, 0.08);
+  border-top-color: #7C6CF8;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* ── Pulse bar ───────────────────────────────────────────────── */
+@keyframes pulse-bar {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.pulse-bar {
+  animation: pulse-bar 2s ease-in-out infinite;
+}
+
+/* ── Score ring ───────────────────────────────────────────────── */
+@keyframes score-fill {
+  from { stroke-dashoffset: 283; }
+}
+
+.score-ring {
+  animation: score-fill 1s ease-out forwards;
+}
+
+/* ── Toast ────────────────────────────────────────────────────── */
+@keyframes toast-in {
+  from { transform: translateY(16px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes toast-out {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(16px); opacity: 0; }
+}
+
+.toast {
+  animation: toast-in 0.3s ease-out;
+}
+
+.toast.hiding {
+  animation: toast-out 0.3s ease-in forwards;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* ── Selection ───────────────────────────────────────────────── */
+::selection {
+  background: rgba(124, 108, 248, 0.3);
+  color: #F0EFF5;
+}
+
+/* ── Focus ring ──────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid #7C6CF8;
+  outline-offset: 2px;
+}
+
+/* ── Fade in ─────────────────────────────────────────────────── */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fade-in 0.4s ease-out;
+}
