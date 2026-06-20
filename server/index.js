@@ -127,6 +127,10 @@ Rules:
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`\n  ⚡ FlashAI server running on http://localhost:${PORT}\n`);
-});
+if (process.env.NODE_ENV !== 'production' || process.env.VERCEL !== '1') {
+  app.listen(PORT, () => {
+    console.log(`\n  ⚡ FlashAI server running on http://localhost:${PORT}\n`);
+  });
+}
+
+export default app;
